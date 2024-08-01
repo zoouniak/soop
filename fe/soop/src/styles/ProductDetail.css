@@ -1,0 +1,54 @@
+.product-detail {
+  border: 10px;
+}
+
+.detail-area {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.thumbnail {
+  flex: 1; 
+  max-width: 30%; 
+}
+
+.thumbnail img {
+  width: 100%;
+  height: auto; /* 이미지의 비율 유지 */
+}
+
+.info-area {
+  flex: 1; 
+  max-width: 50%; 
+}
+.info{
+  text-align: center;
+}
+.calendar {
+  text-align: center;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+.timeslots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.timeslot {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.available {
+  border: 2px solid black;
+}
+
+.unavailable {
+  border: 2px solid gray;
+}
