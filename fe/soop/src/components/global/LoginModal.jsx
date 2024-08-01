@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/LoginModal.css"; // 스타일 적용
-import kakao from "../assets/kakao.png";
-import google from "../assets/google.png";
+import "../../styles/LoginModal.css"; // 스타일 적용
+import kakao from "../../assets/kakao.png";
+import google from "../../assets/google.png";
 
 const LoginModal = ({ onClose }) => {
   // 카카오 로그인 클릭 핸들러

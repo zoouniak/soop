@@ -1,0 +1,112 @@
+.calendar-wrapper {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .react-calendar {
+    width: 100%;
+    font-family: 'PeoplefirstNeatLoudTTF';
+    border: 0.5px groove;
+    border-radius: 1rem;
+  }
+
+  .react-calendar__month-view abbr {
+    color: black; 
+  }
+  .react-calendar__month-view__weekdays abbr {
+      font-size: 10px;
+      font-weight: 900;
+  }
+  .react-calendar__tile {
+    text-align: center;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* 네비게이션 가운데 정렬 */
+  .react-calendar__navigation {
+    height: 50px;
+    justify-content: center;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 10px;
+  }
+  
+  /* 네비게이션 폰트 설정 */
+  .react-calendar__navigation button {
+    font-family: 'PeoplefirstNeatLoudTTF';
+    font-weight: 750;
+    font-size: 20px;
+  }
+  .react-calendar__navigation button:hover {
+    color: pink;
+  }
+
+  .react-calendar__navigation__arrow.react-calendar__navigation__prev2-button,
+  .react-calendar__navigation__arrow.react-calendar__navigation__next2-button
+  {
+    /* 1년 전 후 네비게이션 비활성화 */
+    display: none;
+  }
+  
+  /* 이전 날짜 비활성화 */
+  .react-calendar__tile:disabled
+  ,.react-calendar__tile:disabled abbr{
+    background-color: white;
+    color: rgba(128, 128, 128, 0.303);
+  }
+  
+  /* 년/월 상단 네비게이션 칸 크기 줄이기 */
+  .react-calendar__navigation__label {
+    flex-grow: 0 !important;
+  }
+  
+  /* 요일 밑줄 제거 */
+  .react-calendar__month-view__weekdays abbr {
+    text-decoration: none;
+    color: #1a715a;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  /* 일 날짜 간격 */
+  .react-calendar__tile {
+    font-weight: 900;
+    font-size: 14px;
+  }
+  /* 선택한 날짜 스타일 적용 */
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus,
+  .react-calendar__tile--active {
+    background-color: rgb(255, 255, 255);
+    border: 1px dotted;
+    border-color: black;
+    border-radius: 10px;
+  }
+  /* 타임슬롯 */
+  .timeslots-wrapper div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 10px;
+  }
+  
+  .reserve-button {
+  border: none;
+  background-color: white;
+    padding: 10px;
+    margin: 5px;
+    width: 60%;
+    height: 30%;
+    text-align: center; 
+    font-family: 'PeoplefirstNeatLoudTTF';
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .reserve-button:hover{
+    color: gray;
+  }

@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage";
-import Redirection from "./components/Redirection";
+import Redirection from "./components/global/Redirection";
+import ProductPage from "./pages/ProductsPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import "./App.css";
 
 function App() {
@@ -9,7 +11,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route
           path="/kakao/redirect"
           element={
