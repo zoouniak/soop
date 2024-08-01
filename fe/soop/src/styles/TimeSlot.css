@@ -1,0 +1,26 @@
+.timeslot {
+    padding: 10px;
+    margin: 5px;
+    font-family: 'PeoplefirstNeatLoudTTF';
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .timeslot.available {
+    border-width: 1px;
+    border-color: #6c757d; 
+    background-color: white;
+  }
+  .timeslot.unavailable {
+    border-width: 1px;
+    border-color:#6c757d45; 
+    color: #6c757d45; 
+  }
+  
+ /* 클릭된 시간대 스타일 */
+.timeslot.selected {
+  background-color: rgba(39, 162, 167, 0.389);
+}
+.timeslot:hover {
+  background-color: rgba(39, 162, 167, 0.389);
+}

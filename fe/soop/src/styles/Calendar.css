@@ -1,0 +1,27 @@
+.calendar-container {
+
+    margin-top: 20px;
+    margin: 0 auto;
+  }
+  
+  .timeslots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .timeslot {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .available {
+    border: 2px solid black;
+  }
+  
+  .unavailable {
+    border: 2px solid gray;
+  }
+  
