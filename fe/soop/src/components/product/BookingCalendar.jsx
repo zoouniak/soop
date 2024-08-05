@@ -73,7 +73,12 @@ export const BookingCalendar = ({productId}) => {
     console.log(`예약된 시간: ${selectedDate.toISOString().split("T")[0]} ${selectedTimeSlot.id}`);
 
     // 예약 페이지로 이
-     navigate(`/reserve/${productId}/${selectedTimeSlot.id}`);
+    navigate("/reserve", {
+      state: {
+        productId,
+        timeSlotId: selectedTimeSlot.id,
+      },
+    });
   };
 
   return (
