@@ -19,7 +19,6 @@ public class TimeSlotController {
     private final TimeSlotService timeSlotService;
     @GetMapping("/timeslot")
     public ResponseEntity<List<TimeSlotResponse>> getTimeSlotByDate(@RequestParam LocalDate date){
-        log.info(date.toString());
         return ResponseEntity.ok(timeSlotService.getTimeSlotByDate(date));
     }
 }
