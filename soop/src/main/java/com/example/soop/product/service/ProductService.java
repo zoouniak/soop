@@ -36,7 +36,7 @@ public class ProductService {
         return new ProductPageResponse(totalPages, products);
     }
 
-    public ProductDetailResponse getProduct(final Long productId) {
+    public ProductDetailResponse getProductDetail(final Long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ProductException(NO_SUCH_PRODUCT));
 
