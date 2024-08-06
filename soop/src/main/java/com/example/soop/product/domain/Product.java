@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.REMOVE;
@@ -35,11 +36,11 @@ public class Product {
     private List<ProductImage> images;
 
     @Builder
-    public Product(String name, String summary, String description, int price, List<ProductImage> images) {
+    public Product(String name, String summary, String description, int price) {
         this.name = name;
         this.summary = summary;
         this.description = description;
         this.price = price;
-        this.images = images;
+        this.images = new ArrayList<>();
     }
 }
