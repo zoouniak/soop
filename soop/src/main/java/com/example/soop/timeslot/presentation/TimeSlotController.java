@@ -18,7 +18,7 @@ import java.util.List;
 public class TimeSlotController {
     private final TimeSlotService timeSlotService;
     @GetMapping("/timeslot")
-    public ResponseEntity<List<TimeSlotResponse>> getTimeSlotByDate(@RequestParam LocalDate date){
+    public ResponseEntity<List<TimeSlotResponse>> getTimeSlotByDate(@RequestParam final LocalDate date){
         return ResponseEntity.ok(timeSlotService.getTimeSlotByDate(date));
     }
 }

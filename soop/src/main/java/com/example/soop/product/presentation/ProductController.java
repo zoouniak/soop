@@ -17,13 +17,13 @@ public class ProductController {
 
     // 상품 조회(페이지 당 4개)
     @GetMapping("/products")
-    public ResponseEntity<ProductPageResponse> getProducts(@RequestParam(defaultValue = "1") int page){
+    public ResponseEntity<ProductPageResponse> getProducts(@RequestParam(defaultValue = "1")final int page){
         return ResponseEntity.ok(productService.getProducts(page));
     }
 
     // 상품 상세 조회
     @GetMapping("/product/{id}")
-    public ResponseEntity<ProductDetailResponse> getProduct(@PathVariable(name = "id")Long productId){
+    public ResponseEntity<ProductDetailResponse> getProduct(@PathVariable(name = "id")final Long productId){
         return ResponseEntity.ok(productService.getProduct(productId));
     }
 

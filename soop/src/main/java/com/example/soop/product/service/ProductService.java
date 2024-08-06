@@ -22,7 +22,7 @@ import static com.example.soop.global.exception.ExceptionCode.NO_SUCH_PRODUCT;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public ProductPageResponse getProducts(int page) {
+    public ProductPageResponse getProducts(final int page) {
         Page<Product> pages = productRepository.findAll(PageRequest.of(page - 1, 4, Sort.by(Sort.Direction.DESC, "id")));
         int totalPages = pages.getTotalPages();
 
@@ -36,7 +36,7 @@ public class ProductService {
         return new ProductPageResponse(totalPages, products);
     }
 
-    public ProductDetailResponse getProduct(Long productId) {
+    public ProductDetailResponse getProduct(final Long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ProductException(NO_SUCH_PRODUCT));
 
