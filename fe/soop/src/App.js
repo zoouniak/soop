@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage";
-import Redirection from "./components/global/Redirection";
+import { KakaoRedirection } from "./components/global/KakaoRedirection";
+import { GoogleRedirection } from "./components/global/GoogleRedirection";
 import ProductPage from "./pages/ProductPage/ProductsPage";
 import ProductDetailPage from "./pages/ProductPage/ProductDetailPage";
 import { ReservationPage } from "./pages/ReservationPage/ReservationPage";
+import { ErrorPage } from "./pages/global/ErrorPage";
+import { MyPage } from "./pages/MyPage/MyPage";
 import "./App.css";
 
 function App() {
@@ -12,15 +15,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/error" element={<ErrorPage />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
-        <Route
-          path="/kakao/redirect"
-          element={
-            <Redirection text={"로그인 진행중입니다. 잠시만 기다려주세요"} />
-          }
-        ></Route>
+        <Route path="/kakao/redirect" element={<KakaoRedirection />} />
+        <Route path="/google/redirect" element={<GoogleRedirection />} />
         <Route path="/reserve" element={<ReservationPage />} />
+        <Route path="/mypage" />
       </Routes>
     </Router>
   );
