@@ -1,52 +1,53 @@
 #product-container {
-  margin: 40px;
-  display: flex;
-  flex-wrap: wrap;
+  padding: 40px;
   justify-content: center;
 }
+#product-wrapper{
+  text-align: center;
+  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;  
 
+}
 .product img {
-  
-  width: 300px; 
-  height: 300px; 
+  width: 200px;               
+  height: auto; 
   object-fit: contain; 
 }
 
-.product {
-  border: 1px solid #283330;
-  flex:1 1 calc(50% - 20px);
+.product { 
   box-sizing: border-box;
-  margin: 10px;
-  text-align: center;
+  min-height: 200px; /* 최소 높이 설정 */
 }
 
 .pagination {
-  
-  align-items: right;
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* 페이지 번호 사이의 간격 설정 */
   margin-top: 20px;
 }
 
-.pagination button {
-  
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  margin: 0 5px;
+.pagination span {
+  padding: 8px 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.pagination button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+.pagination span:hover {
+  color: gray;
 }
 
-.pagination button.active {
-  background: #1a715a;
+.pagination span.active {
+  font-weight: bold;
+  color: black;
 }
 
-.pagination button:hover:not(:disabled) {
-  background: #1a715a;
+.pagination span.disabled {
+  pointer-events: none;
 }
+
+
 
 

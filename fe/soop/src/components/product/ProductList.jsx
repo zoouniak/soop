@@ -37,6 +37,7 @@ export const ProductList = () => {
 
   return (
     <div id="product-container">
+      <div id="product-wrapper">
       {products.length > 0 ? (
         products.map((product) => (
           <ProductThumbnail key={product.id} product={product} />
@@ -44,24 +45,32 @@ export const ProductList = () => {
       ) : (
         <p>상품이 존재하지 않습니다.</p>
       )}
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          &lt;&lt;
-        </button>
-        {generatePageNumbers().map((page) => (
-          <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={page === currentPage ? "active" : ""}
-          >
-            {page}
-          </button>
-        ))}
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          &gt;&gt;
-        </button>
       </div>
+
+      <div className="pagination">
+        <span
+          onClick={handlePreviousPage}
+          className={currentPage === 1 ? "disabled" : ""}
+        >
+          &lt;&lt;
+        </span>
+      {generatePageNumbers().map((page) => (
+        <span
+        key={page}
+        onClick={() => setCurrentPage(page)}
+        className={page === currentPage ? "active" : ""}
+        >
+        {page}
+        </span>
+      ))}
+    <span
+    onClick={handleNextPage}
+    className={currentPage === totalPages ? "disabled" : ""}
+    >
+      &gt;&gt;
+    </span>
     </div>
+  </div>
   );
 };
 

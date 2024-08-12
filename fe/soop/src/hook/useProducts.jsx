@@ -13,7 +13,7 @@ const useProducts = (currentPage) => {
       setLoading(true);
       const response = await apiClient.get(`/products?page=${currentPage}`);
       setProducts(response.data.productList || []);
-      setTotalPages(response.data.totalPage); // Assuming the API provides total pages information
+      setTotalPages(response.data.totalPage);
     } catch (error) {
       setError(error);
     } finally {
