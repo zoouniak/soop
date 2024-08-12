@@ -5,14 +5,16 @@ import google from "../../assets/google.png";
 
 const LoginModal = ({ onClose }) => {
   // 카카오 로그인 클릭 핸들러
-  const link = `${process.env.REACT_APP_KAKAO_URL}`;
+  
   const handleKakaoLogin = () => {
+    const link = `${process.env.REACT_APP_KAKAO_URL}`;
     window.location.href = link;
   };
 
   // 구글 로그인 클릭 핸들러
   const handleGoogleLogin = () => {
-    window.open("/auth/google", "_blank");
+    const link = `${process.env.REACT_APP_GOOGLE_URL}`;
+    window.location.href = link;
   };
 
   return (
