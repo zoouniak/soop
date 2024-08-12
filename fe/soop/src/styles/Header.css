@@ -2,12 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 30px 20px;
+    height: 70px;
     background-color: #f8f9fa;
 }
 
 .logo {
-    height: 50px;
+    height: 70px;
 }
 
 .nav {
@@ -17,8 +18,9 @@
 .nav-item {
     margin-left: 20px;
     text-decoration: none;
-    color: #333;
+    color: hsl(0, 0%, 0%);
     font-weight: bold;
+    font-size: 20px;
 }
 
 .nav-item:hover {

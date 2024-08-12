@@ -2,13 +2,13 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "../assets/home1.jpg"; // 이미지 파일 경로
-import image2 from "../assets/home2.jpg"; // 이미지 파일 경로
-import image3 from "../assets/home3.jpg"; // 이미지 파일 경로]
-import image4 from "../assets/home4.jpg"; // 이미지 파일 경로
-import image5 from "../assets/home5.jpg"; // 이미지 파일 경로
-import image6 from "../assets/home6.jpg"; // 이미지 파일 경로
-import "../styles/Carousel.css";
+import image1 from "../../assets/home1.jpg"; // 이미지 파일 경로
+import image2 from "../../assets/home2.jpg"; // 이미지 파일 경로
+import image3 from "../../assets/home3.jpg"; // 이미지 파일 경로]
+import image4 from "../../assets/home4.jpg"; // 이미지 파일 경로
+import image5 from "../../assets/home5.jpg"; // 이미지 파일 경로
+import image6 from "../../assets/home6.jpg"; // 이미지 파일 경로
+import "../../styles/Carousel.css";
 
 const images = [image1, image2, image3, image4, image5, image6];
 

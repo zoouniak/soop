@@ -1,0 +1,53 @@
+#product-container {
+  padding: 40px;
+  justify-content: center;
+}
+#product-wrapper{
+  text-align: center;
+  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;  
+
+}
+.product img {
+  width: 200px;               
+  height: auto; 
+  object-fit: contain; 
+}
+
+.product { 
+  box-sizing: border-box;
+  min-height: 200px; /* 최소 높이 설정 */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* 페이지 번호 사이의 간격 설정 */
+  margin-top: 20px;
+}
+
+.pagination span {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination span:hover {
+  color: gray;
+}
+
+.pagination span.active {
+  font-weight: bold;
+  color: black;
+}
+
+.pagination span.disabled {
+  pointer-events: none;
+}
+
+
+
+
