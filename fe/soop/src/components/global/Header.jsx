@@ -24,6 +24,10 @@ const Header = () => {
     nav("/");
   };
 
+  const myPage = () =>{
+    nav("/mypage")
+  }
+
   // 로그인 클릭 핸들러
   const onLoginClick = () => {
     setIsModalOpen(true);
@@ -49,7 +53,7 @@ const Header = () => {
         </a>
         {isLogin ? (
          <>
-         <a className="nav-item">
+         <a className="nav-item" onClick={myPage}>
            마이페이지
          </a>
           <a className="nav-item" onClick={logout}>
