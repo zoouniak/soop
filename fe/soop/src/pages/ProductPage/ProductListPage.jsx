@@ -3,9 +3,8 @@ import Header from "../../components/global/Header";
 import { ProductList } from "../../components/product/ProductList";
 import Footer from "../../components/global/Footer";
 
-const ProductPage = () => {
+export const ProductListPage = () => {
   return (
-    <div>
       <div>
         <Header />
         <main>
@@ -13,7 +12,6 @@ const ProductPage = () => {
         </main>
         <Footer />
       </div>
-    </div>
   );
 };
-export default ProductPage;
+
