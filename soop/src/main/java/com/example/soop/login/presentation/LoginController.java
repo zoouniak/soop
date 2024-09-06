@@ -56,7 +56,7 @@ public class LoginController {
         return ResponseCookie.from(REFRESH_TOKEN, refreshToken)
                 .maxAge(COOKIE_AGE_SECONDS)
                 .sameSite("None")
-                .secure(false)
+                .secure(true)
                 .httpOnly(true)
                 .path("/")
                 .build();
