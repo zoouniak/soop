@@ -1,6 +1,6 @@
 // src/hooks/useProducts.js
 import { useState, useEffect } from "react";
-import { apiClient } from "../util/axios";
+import  apiClient  from "../util/axios";
 
 const useProducts = (currentPage) => {
   const [products, setProducts] = useState([]);

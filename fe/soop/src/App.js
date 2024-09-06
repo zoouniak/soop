@@ -7,7 +7,7 @@ import ProductPage from "./pages/ProductPage/ProductsPage";
 import ProductDetailPage from "./pages/ProductPage/ProductDetailPage";
 import { ReservationPage } from "./pages/ReservationPage/ReservationPage";
 import { ErrorPage } from "./pages/global/ErrorPage";
-import { MyPage } from "./pages/MyPage/MyPage";
+//import { MyPage } from "./pages/MyPage/MyPage";
 import "./App.css";
 
 function App() {
