@@ -18,9 +18,15 @@ public class User {
     private String loginId;
     private String nickname;
 
+    private String phone;
+
     @Builder
     public User(String loginId, String nickname) {
         this.loginId = loginId;
         this.nickname = nickname;
+    }
+
+    public void updatePhone(String phone){
+        this.phone = phone;
     }
 }
