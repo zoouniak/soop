@@ -20,12 +20,15 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    implementation 'org.web3j:core:4.8.7'
-    implementation 'org.web3j:crypto:4.8.7'
-    implementation 'org.web3j:contracts:4.8.7'
+
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+    // web3j
+    implementation 'org.web3j:core:4.12.1'
+    implementation 'org.web3j:crypto:4.12.1'
+    implementation 'org.web3j:contracts:4.12.1'
     // redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
@@ -40,6 +43,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {
