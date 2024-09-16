@@ -1,4 +1,4 @@
-package com.example.soop.wallet.dto;
+package com.example.soop.wallet.dto.response;
 
 public record WalletResponse (
      String address,
