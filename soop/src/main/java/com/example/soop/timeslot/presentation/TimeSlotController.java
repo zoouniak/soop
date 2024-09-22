@@ -20,7 +20,7 @@ public class TimeSlotController {
     private final TimeSlotService timeSlotService;
     @GetMapping("/timeslot")
     public ResponseEntity<List<TimeSlotResponse>> getTimeSlotByDate(@RequestParam final LocalDate date){
-        return ResponseEntity.ok(timeSlotService.getTimeSlotByDate(date));
+        return ResponseEntity.ok(timeSlotService.getAvailableTimeSlotByDate(date));
     }
 
     @GetMapping("/timeslot/{id}")

@@ -18,7 +18,7 @@ import static com.example.soop.global.exception.ExceptionCode.NO_SUCH_TIMESLOT;
 public class TimeSlotService {
     public final TimeSlotRepository timeSlotRepository;
 
-    public List<TimeSlotResponse> getTimeSlotByDate(final LocalDate date) {
+    public List<TimeSlotResponse> getAvailableTimeSlotByDate(final LocalDate date) {
         List<TimeSlot> allByDate = timeSlotRepository.findAllByDateAndIsAvailableTrue(date);
         return allByDate.stream().map((slot)
                         -> new TimeSlotResponse(slot.getId(), slot.getDate(), slot.getStartedAt(), slot.isAvailable()))
