@@ -29,7 +29,9 @@ public enum ExceptionCode {
     // timeslot
     NO_SUCH_TIMESLOT(401, BAD_REQUEST,"해당 타임슬롯이 존재하지 않습니다."),
     // user
-    NO_SUCH_USER(501,BAD_REQUEST,"해당 사용자가 존재하지 않습니다.");
+    NO_SUCH_USER(501,BAD_REQUEST,"해당 사용자가 존재하지 않습니다."),
+    // reservation
+    FAIL_RESERVE(601, INTERNAL_SERVER_ERROR,"예약 도중 에러가 발생하였습니다");
 
     private final int errorCode;
     private final HttpStatus httpStatus;
