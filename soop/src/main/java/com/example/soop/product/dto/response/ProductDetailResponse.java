@@ -11,7 +11,7 @@ public record ProductDetailResponse(
         String name,
         String summary,
         String description,
-        int price,
+        String price,
         List<String> imageNames
 ) {
     public static ProductDetailResponse of(Product product) {
