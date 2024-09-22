@@ -25,7 +25,7 @@ import java.time.ZoneOffset;
 
 @Service
 public class ReserveService {
-    @Value("web3.contract-address")
+    @Value("${web3.contract-address}")
     private String contractAddress;
     private final Web3j web3j;
     private final ContractGasProvider contractGasProvider;
@@ -57,8 +57,9 @@ public class ReserveService {
 
             reservationRepository.save(new Reservation(id - 1, timeSlot, user, product));
             timeSlot.setUnAvailable();
-            return new ReserveResponse(id);
+            return new ReserveResponse(1L);
         } catch (Exception e) {
+            System.out.println(e);
             throw new ReservationException(ExceptionCode.FAIL_RESERVE);
         }
     }
