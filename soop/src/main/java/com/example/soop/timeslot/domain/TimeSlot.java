@@ -19,4 +19,8 @@ public class TimeSlot {
     private LocalTime startedAt;
     private LocalTime endedAt;
     private boolean isAvailable;
+
+    public void setUnAvailable(){
+        this.isAvailable=false;
+    }
 }

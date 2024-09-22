@@ -30,13 +30,13 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private int price;
+    private String price;
 
     @OneToMany(mappedBy = "product", cascade = REMOVE, orphanRemoval = true)
     private List<ProductImage> images;
 
     @Builder
-    public Product(String name, String summary, String description, int price) {
+    public Product(String name, String summary, String description, String price) {
         this.name = name;
         this.summary = summary;
         this.description = description;

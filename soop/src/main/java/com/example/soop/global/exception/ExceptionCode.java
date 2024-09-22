@@ -21,9 +21,17 @@ public enum ExceptionCode {
     INVALID_REFRESH_TOKEN(106, BAD_REQUEST, "유효하지 않는 리프레시 토큰입니다."),
     FAIL_TO_VALIDATE(107, BAD_REQUEST, "토큰 검증에 실패하였습니다."),
 
-    FAIL_CREATE_WALLET(201, INTERNAL_SERVER_ERROR, "지갑 생성에 실패하였습니다"),
+    // wallet
+    FAIL_CREATE_WALLET(201, INTERNAL_SERVER_ERROR, "지갑 생성에 실패하였습니다."),
     FAIL_LOAD_BALANCE(202, BAD_REQUEST, "잔액 조회에 실패하였습니다."),
-    NO_SUCH_PRODUCT(301, BAD_REQUEST, "해당 상품이 존재하지 않습니다");
+    // product
+    NO_SUCH_PRODUCT(301, BAD_REQUEST, "해당 상품이 존재하지 않습니다."),
+    // timeslot
+    NO_SUCH_TIMESLOT(401, BAD_REQUEST,"해당 타임슬롯이 존재하지 않습니다."),
+    // user
+    NO_SUCH_USER(501,BAD_REQUEST,"해당 사용자가 존재하지 않습니다."),
+    // reservation
+    FAIL_RESERVE(601, INTERNAL_SERVER_ERROR,"예약 도중 에러가 발생하였습니다");
 
     private final int errorCode;
     private final HttpStatus httpStatus;
