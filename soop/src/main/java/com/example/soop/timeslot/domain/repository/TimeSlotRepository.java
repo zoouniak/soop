@@ -7,5 +7,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TimeSlotRepository extends JpaRepository<TimeSlot,Long> {
-    List<TimeSlot> findAllByDate(LocalDate date);
+    List<TimeSlot> findAllByDateAndIsAvailableTrue(LocalDate date);
 }

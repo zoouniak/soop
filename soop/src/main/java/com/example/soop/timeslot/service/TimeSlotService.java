@@ -19,7 +19,7 @@ public class TimeSlotService {
     public final TimeSlotRepository timeSlotRepository;
 
     public List<TimeSlotResponse> getTimeSlotByDate(final LocalDate date) {
-        List<TimeSlot> allByDate = timeSlotRepository.findAllByDate(date);
+        List<TimeSlot> allByDate = timeSlotRepository.findAllByDateAndIsAvailableTrue(date);
         return allByDate.stream().map((slot)
                         -> new TimeSlotResponse(slot.getId(), slot.getDate(), slot.getStartedAt(), slot.isAvailable()))
                 .collect(Collectors.toList());
