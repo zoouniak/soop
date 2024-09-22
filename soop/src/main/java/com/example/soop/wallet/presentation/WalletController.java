@@ -1,5 +1,7 @@
 package com.example.soop.wallet.presentation;
 
+import com.example.soop.auth.domain.Accessor;
+import com.example.soop.auth.domain.Auth;
 import com.example.soop.wallet.dto.request.WalletCreateRequest;
 import com.example.soop.wallet.dto.response.BalanceResponse;
 import com.example.soop.wallet.dto.response.WalletResponse;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/wallet")
+@RequestMapping("/wallet")
 public class WalletController {
 
     private final WalletService walletService;
@@ -26,10 +28,8 @@ public class WalletController {
     }
 
     @GetMapping("/balance")
-    public ResponseEntity<BalanceResponse> getBalance(@RequestParam String wallet) {
-
-
-        return ResponseEntity.ok(walletService.getBalance(wallet));
+    public ResponseEntity<BalanceResponse> getBalance(@Auth Accessor accessor) {
+        return ResponseEntity.ok(walletService.getBalance(accessor.getMemberId()));
     }
 
     @PostMapping("/create-from-private")

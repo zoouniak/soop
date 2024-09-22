@@ -1,18 +1,22 @@
 package com.example.soop.wallet.service;
 
+import com.example.soop.global.exception.UserException;
 import com.example.soop.global.exception.wallet.WalletException;
+import com.example.soop.user.domain.User;
+import com.example.soop.user.domain.repository.UserRepository;
 import com.example.soop.wallet.dto.request.WalletCreateRequest;
 import com.example.soop.wallet.dto.response.BalanceResponse;
 import com.example.soop.wallet.dto.response.WalletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
 
 import java.io.IOException;
@@ -22,21 +26,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.soop.global.exception.ExceptionCode.FAIL_CREATE_WALLET;
-import static com.example.soop.global.exception.ExceptionCode.FAIL_LOAD_BALANCE;
+import static com.example.soop.global.exception.ExceptionCode.*;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class WalletService {
 
-    private static final String WALLET_PATH = "C://Users//오주은//Desktop//personal study//도전학기제//";
+    @Value("web3.wallet-path")
+    private String WALLET_PATH;
     private final Web3j web3j;
+    private final UserRepository userRepository;
 
-    public WalletService() {
-        // Connect to Ganache
-        web3j = Web3j.build(new HttpService("http://127.0.0.1:8545")); // Replace with your Ganache RPC URL
-    }
 
     public WalletResponse createWallet(WalletCreateRequest req) {
         Path walletDir = Paths.get(WALLET_PATH);
@@ -79,8 +80,10 @@ public class WalletService {
         return new WalletResponse(address, privateKey);
     }
 
-    public BalanceResponse getBalance(String walletAddress) {
-        BigInteger weiBalance = null;
+    public BalanceResponse getBalance(Long userId) {
+        User user = getUser(userId);
+        String walletAddress = user.getWallet();
+        BigInteger weiBalance;
         try {
             weiBalance = web3j.ethGetBalance(walletAddress, DefaultBlockParameterName.LATEST)
                     .sendAsync()
@@ -94,6 +97,10 @@ public class WalletService {
 
         // Convert Wei to Ether
         return new BalanceResponse(Convert.fromWei(weiBalance.toString(), Convert.Unit.ETHER));
+    }
+
+    private User getUser(Long userId) {
+        return userRepository.findById(userId).orElseThrow(()->new UserException(NO_SUCH_USER));
     }
 }
 
