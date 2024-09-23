@@ -57,7 +57,7 @@ public class ReserveService {
 
             reservationRepository.save(new Reservation(id - 1, timeSlot, user, product));
             timeSlot.setUnAvailable();
-            return new ReserveResponse(1L);
+            return new ReserveResponse(1L, product.getName(), timeSlot.getDate(), timeSlot.getStartedAt(), user.getNickname(), user.getPhone());
         } catch (Exception e) {
             System.out.println(e);
             throw new ReservationException(ExceptionCode.FAIL_RESERVE);
