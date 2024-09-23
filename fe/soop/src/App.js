@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage";
 import { KakaoRedirection } from "./components/global/KakaoRedirection";
 import { GoogleRedirection } from "./components/global/GoogleRedirection";
-import ProductPage from "./pages/ProductPage/ProductsPage";
+import { ProductListPage } from "./pages/ProductPage/ProductListPage";
 import ProductDetailPage from "./pages/ProductPage/ProductDetailPage";
 import { ReservationPage } from "./pages/ReservationPage/ReservationPage";
 import { ReservationSuccessPage } from "./pages/ReservationPage/ReservationSuccessPage";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/error" element={<ErrorPage />} />
-        <Route path="/products" element={<ProductPage />} />
+        <Route path="/products" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/kakao/redirect" element={<KakaoRedirection />} />
         <Route path="/google/redirect" element={<GoogleRedirection />} />
