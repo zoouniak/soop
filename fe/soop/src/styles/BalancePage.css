@@ -1,0 +1,58 @@
+/* 페이지 전체 스타일 */
+.balance-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+/* 제목 스타일 */
+.balance-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* WalletBalance 컴포넌트를 감싸는 컨테이너 스타일 */
+.balance-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* 버튼 스타일 */
+.wallet-balance button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wallet-balance button:hover {
+    background-color: #45a049;
+}
+
+/* 오류 메시지 스타일 */
+.wallet-balance .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* 잔액 표시 스타일 */
+.wallet-balance p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+}

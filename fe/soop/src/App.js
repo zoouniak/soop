@@ -8,7 +8,8 @@ import ProductDetailPage from "./pages/ProductPage/ProductDetailPage";
 import { ReservationPage } from "./pages/ReservationPage/ReservationPage";
 import { ReservationSuccessPage } from "./pages/ReservationPage/ReservationSuccessPage";
 import { ErrorPage } from "./pages/global/ErrorPage";
-//import { MyPage } from "./pages/MyPage/MyPage";
+import { MyPage } from "./pages/MyPage/MyPage";
+import { BalancePage } from "./pages/MyPage/BalancePage";
 import "./App.css";
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
           path="/reservation-success"
           element={<ReservationSuccessPage />}
         />
-        <Route path="/mypage" />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/my/balance" element={<BalancePage />} />
       </Routes>
     </Router>
   );

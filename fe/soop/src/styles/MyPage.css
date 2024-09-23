@@ -1,5 +1,5 @@
 .mypage-container {
-    padding: 20px;
+    padding: 30px;
     text-align: center;
   }
   
@@ -9,16 +9,19 @@
     margin-top: 20px;
   }
   
-  .button {
+  .area {
+    width: 200px; /* 고정된 너비 설정 */
+    height: 300px; /* 고정된 높이 설정 */
     padding: 15px 30px;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
     background-color: #f4f4f4;
     transition: background-color 0.3s ease;
+    color: black;
   }
   
-  .button:hover {
+  .area:hover {
     background-color: #ddd;
   }
   
