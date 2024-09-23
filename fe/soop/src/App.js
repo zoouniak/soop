@@ -10,6 +10,8 @@ import { ReservationSuccessPage } from "./pages/ReservationPage/ReservationSucce
 import { ErrorPage } from "./pages/global/ErrorPage";
 import { MyPage } from "./pages/MyPage/MyPage";
 import { BalancePage } from "./pages/MyPage/BalancePage";
+import { ReservationListPage } from "./pages/ReservationPage/ReservationListPage";
+import { ReservationDetailPage } from "./pages/ReservationPage/ReservationDetailPage";
 import "./App.css";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/my/balance" element={<BalancePage />} />
+        <Route path="/my/reservations" element={<ReservationListPage />} />
+        <Route path="/reservation/:id" element={<ReservationDetailPage />} />
       </Routes>
     </Router>
   );

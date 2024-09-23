@@ -1,0 +1,9 @@
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reservation-list-page {
+  padding: 20px;
+}

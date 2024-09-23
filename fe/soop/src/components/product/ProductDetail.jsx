@@ -19,6 +19,7 @@ export const ProductDetail = () => {
     <div>
       <div className="product-detail">
         <div className="detail-area">
+          
           <div className="thumbnail">
             <img src={image1} />
           </div>
@@ -29,8 +30,9 @@ export const ProductDetail = () => {
               <p>{description}</p>
               <p> {price} Wei</p>
             </div>
-
-            <BookingCalendar productId={id} />
+            <div>
+              <BookingCalendar productId={id} />
+            </div>
           </div>
         </div>
       </div>

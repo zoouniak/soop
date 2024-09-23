@@ -1,0 +1,28 @@
+.reservation-detail-page {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.reservation-info {
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 80%; 
+  max-width: 600px;
+}
+.reservation-info p {
+  margin: 10px 0;
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center; 
+}

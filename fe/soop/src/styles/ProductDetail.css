@@ -6,7 +6,6 @@
   padding: 10px;
   display: flex;
   justify-content: space-around;
-  
 }
 
 .thumbnail {
@@ -16,7 +15,7 @@
 
 .thumbnail img {
   width: 100%;
-  height: auto; /* 이미지의 비율 유지 */
+  height: auto;
 }
 
 .info-area {
@@ -27,13 +26,13 @@
   text-align: center;
 }
 .calendar {
+  display: inline;
   text-align: center;
   margin-top: 20px;
   margin: 0 auto;
 }
 
 .timeslots {
-  display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
