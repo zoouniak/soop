@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,12 +32,16 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private ReservationStatus status;
 
+    @Column
+    private LocalDateTime createdAt;
+
     @Builder
-    public Reservation(Long id,TimeSlot timeSlot, User user, Product product) {
+    public Reservation(Long id,TimeSlot timeSlot, User user, Product product,LocalDateTime createdAt) {
         this.id=id;
         this.timeSlot = timeSlot;
         this.user = user;
         this.product = product;
         this.status = ReservationStatus.RESERVED;
+        this.createdAt = createdAt;
     }
 }

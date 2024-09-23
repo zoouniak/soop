@@ -53,9 +53,9 @@ public class ReserveService {
 
             ReservationContract userContract = getUserContract(user.getPrivateKey());
             userContract.reserve(convertReservationDate(), new BigInteger(product.getPrice())).send();
-            Long id = Long.valueOf(userContract.nextResId().send().toString());
+            Long nextId = Long.valueOf(userContract.nextResId().send().toString());
 
-            reservationRepository.save(new Reservation(id - 1, timeSlot, user, product));
+            reservationRepository.save(new Reservation(nextId - 1, timeSlot, user, product, LocalDateTime.now()));
             timeSlot.setUnAvailable();
             return new ReserveResponse(1L, product.getName(), timeSlot.getDate(), timeSlot.getStartedAt(), user.getNickname(), user.getPhone());
         } catch (Exception e) {
