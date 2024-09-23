@@ -49,14 +49,12 @@ export const BookingCalendar = ({productId}) => {
   // 날짜 선택
   const handleDateChange = (date) => {
     setSelectedTimeSlot(null);
-    console.log(date)
     setSelectedDate(date);
   };
 
   // 타임슬롯 선택
   const handleTimeSlotClick = (slot) => {
     if (slot.isAvailable) {
-      console.log(slot);
       setSelectedTimeSlot(slot);
     }
   };
@@ -70,9 +68,9 @@ export const BookingCalendar = ({productId}) => {
       alert("시간대를 선택해주세요.");
       return;
     }
-    console.log(`예약된 시간: ${selectedDate.toISOString().split("T")[0]} ${selectedTimeSlot.id}`);
+    //console.log(`예약된 시간: ${selectedDate.toISOString().split("T")[0]} ${selectedTimeSlot.id}`);
 
-    // 예약 페이지로 이
+    // 예약 페이지로 이동
     navigate("/reserve", {
       state: {
         productId,

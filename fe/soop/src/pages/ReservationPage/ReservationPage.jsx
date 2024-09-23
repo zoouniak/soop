@@ -1,59 +1,61 @@
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { useReservationData } from "../../hook/useReservationData";
+import { ProductInfo } from "../../components/reservation/ProductInfo";
+import { TimeSlotInfo } from "../../components/reservation/TimeSlotInfo";
+import { UserInfo } from "../../components/reservation/UserInfo";
+import { reserveProduct } from "../../api/reserveApi";
+import "../../styles/ReservationPage.css";
 
 export const ReservationPage = () => {
   const location = useLocation();
-  const { productId, timeSlotId } = location.state || {};
-  const [productInfo, setProductInfo] = useState(null);
-  const [timeSlotInfo, setTimeSlotInfo] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate(); 
+  const { productId, timeSlotId } = location.state;
+  const { productInfo, timeSlotInfo, userInfo, loading, error } = useReservationData(productId, timeSlotId);
 
-  useEffect(() => {
-    // Fetch product and time slot info from the server
-    if (productId && timeSlotId) {
-      fetch(`/api/product/${productId}`)
-        .then(response => response.json())
-        .then(data => setProductInfo(data));
+  const [isReserving, setIsReserving] = useState(false); 
+  const [reservationError, setReservationError] = useState(null);
 
-      fetch(`/api/timeslot/${timeSlotId}`)
-        .then(response => response.json())
-        .then(data => setTimeSlotInfo(data));
+  const handleReserve = async () => {
+    setIsReserving(true);
+    setReservationError(null);
+
+    try {
+      const response = await reserveProduct({ productId, timeSlotId });
+      navigate("/reservation-success", { state: { reservationInfo: response } });
+    } catch (error) {
+      alert("예약에 실패했습니다.");
+      setReservationError("예약에 실패했습니다.");
+    } finally {
+      setIsReserving(false);
     }
+  };
 
-    // Fetch user info from the server
-    fetch("/api/userinfo")
-      .then(response => response.json())
-      .then(data => setUserInfo(data));
-  }, [productId, timeSlotId]);
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
 
-  if (!productInfo || !timeSlotInfo || !userInfo) {
-    return <div>Loading...</div>; // Display loading state while fetching data
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
-    <div>
-      <h1>예약 정보</h1>
-      <div>
-        <h2>상품 정보</h2>
-        <p>{productInfo.name}</p>
-        <p>{productInfo.description}</p>
+    <div className="reservation-page">
+      <h1>예약 페이지</h1>
+      <div className="reservation-info">
+      <ProductInfo productInfo={productInfo} />
+      <TimeSlotInfo timeSlotInfo={timeSlotInfo} />
+      <UserInfo userInfo={userInfo} />
       </div>
+
       <div>
-        <h2>시간대 정보</h2>
-        <p>{timeSlotInfo.startTime} - {timeSlotInfo.endTime}</p>
+        <button onClick={handleReserve} disabled={isReserving}>
+          {isReserving ? "예약 진행 중..." : "예약하기"}
+        </button>
+        {reservationError && <p style={{ color: "red" }}>{reservationError}</p>}
       </div>
-      <div>
-        <h2>사용자 정보</h2>
-        <p>이름: {userInfo.name}</p>
-        <p>연락처: {userInfo.contact || "연락처를 입력해주세요."}</p>
-        {!userInfo.contact && (
-          <form>
-            <input type="text" placeholder="연락처 입력" />
-            <button type="submit">제출</button>
-          </form>
-        )}
-      </div>
+      
     </div>
   );
 };
-

@@ -1,0 +1,12 @@
+.wallet-balance {
+    margin-top: 20px;
+  }
+  
+  .wallet-balance .error-message {
+    color: red;
+  }
+  
+  .wallet-balance p {
+    font-weight: bold;
+  }
+  

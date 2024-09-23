@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiClient } from "../../util/axios"; 
+import apiClient  from "../../util/axios"; 
 import '../../styles/InfoPage.css';
 
 export const SocialRedirection = ({ text, redirectUri }) => {
   const navigate = useNavigate();
-
   const JWT_EXPIRE_TIME = 24 * 3600 * 1000; // 만료 시간 (24시간 밀리 초로 표현)
 
   useEffect(() => {
     // URL에서 'code' 파라미터를 추출
     const code = new URL(window.location.href).searchParams.get("code");
-    console.log(code);
-    console.log(redirectUri)
 
     // 인가 코드를 백엔드로 전송
     apiClient
@@ -31,14 +28,7 @@ export const SocialRedirection = ({ text, redirectUri }) => {
   const onSilentRefresh = () => {
     apiClient
       .post(
-        "/login/extend",
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+        "/login/extend"
       )
       .then(onLoginSuccess)
       .catch((error) => {

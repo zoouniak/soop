@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { apiClient } from "../util/axios"; // API 클라이언트 설정
+import  apiClient  from "../util/axios"; // API 클라이언트 설정
 
 const useProduct = (id) => {
   const [product, setProduct] = useState(null);

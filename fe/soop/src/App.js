@@ -6,8 +6,9 @@ import { GoogleRedirection } from "./components/global/GoogleRedirection";
 import { ProductListPage } from "./pages/ProductPage/ProductListPage";
 import ProductDetailPage from "./pages/ProductPage/ProductDetailPage";
 import { ReservationPage } from "./pages/ReservationPage/ReservationPage";
+import { ReservationSuccessPage } from "./pages/ReservationPage/ReservationSuccessPage";
 import { ErrorPage } from "./pages/global/ErrorPage";
-import { MyPage } from "./pages/MyPage/MyPage";
+//import { MyPage } from "./pages/MyPage/MyPage";
 import "./App.css";
 
 function App() {
@@ -21,7 +22,11 @@ function App() {
         <Route path="/kakao/redirect" element={<KakaoRedirection />} />
         <Route path="/google/redirect" element={<GoogleRedirection />} />
         <Route path="/reserve" element={<ReservationPage />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route
+          path="/reservation-success"
+          element={<ReservationSuccessPage />}
+        />
+        <Route path="/mypage" />
       </Routes>
     </Router>
   );

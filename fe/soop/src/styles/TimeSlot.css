@@ -4,6 +4,7 @@
     font-family: 'PeoplefirstNeatLoudTTF';
     font-size: 15px;
     font-weight: 500;
+    color: black;
   }
   
   .timeslot.available {
@@ -19,8 +20,9 @@
   
  /* 클릭된 시간대 스타일 */
 .timeslot.selected {
-  background-color: rgba(39, 162, 167, 0.389);
+  background-color: lightgrey;
+  color: black;
 }
 .timeslot:hover {
-  background-color: rgba(39, 162, 167, 0.389);
+  background-color: lightgray;
 }
