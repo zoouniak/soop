@@ -1,16 +1,12 @@
 @font-face {
-  font-family: 'PeoplefirstNeatLoudTTF';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstNeatLoudTTF.woff2') format('woff2');
+  font-family: 'SeoulNamsanM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 body {
   margin: 0;
-  font-family: 'PeoplefirstNeatLoudTTF';
-   /*-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;*/
-    font-size: 20px;
+  font-family: 'SeoulNamsanM';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

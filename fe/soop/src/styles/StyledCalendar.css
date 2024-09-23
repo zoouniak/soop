@@ -9,9 +9,9 @@
   
   .react-calendar {
     width: 100%;
-    font-family: 'PeoplefirstNeatLoudTTF';
     border: 0.5px groove;
     border-radius: 1rem;
+    font-family: 'SeoulNamsanM';
   }
 
   .react-calendar__month-view abbr {
@@ -39,12 +39,12 @@
   
   /* 네비게이션 폰트 설정 */
   .react-calendar__navigation button {
-    font-family: 'PeoplefirstNeatLoudTTF';
     font-weight: 750;
     font-size: 20px;
+    color: black;
   }
   .react-calendar__navigation button:hover {
-    color: pink;
+    color: #1a715a;
   }
 
   .react-calendar__navigation__arrow.react-calendar__navigation__prev2-button,
@@ -82,8 +82,9 @@
   /* 선택한 날짜 스타일 적용 */
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus,
+  .react-calendar__tile::selection,
   .react-calendar__tile--active {
-    background-color: rgb(255, 255, 255);
+    background-color: lightgrey;
     border: 1px dotted;
     border-color: black;
     border-radius: 10px;
@@ -96,14 +97,13 @@
   }
   
   .reserve-button {
-  border: none;
-  background-color: white;
+    border: none;
+    background-color: black;
     padding: 10px;
     margin: 5px;
     width: 60%;
     height: 30%;
     text-align: center; 
-    font-family: 'PeoplefirstNeatLoudTTF';
     font-size: 15px;
     font-weight: 800;
   }

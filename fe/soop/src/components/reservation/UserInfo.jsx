@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import  apiClient  from "../../util/axios";
+import apiClient from "../../util/axios";
+import {WalletBalance} from "../../components/user/WalletBalance"; 
+import { reserveProduct } from "../../api/reserveApi";
 
 export const UserInfo = ({ userInfo }) => {
-  // 연락처 입력 상태 관리
   const [phone, setPhone] = useState(userInfo?.phone || "");
   const [isEditing, setIsEditing] = useState(!userInfo?.phone);
+  
+  
+  // 예약 상태 관리
+  const [isReserving, setIsReserving] = useState(false);
+  const [reservationError, setReservationError] = useState(null);
+  const [reservationSuccess, setReservationSuccess] = useState(false);
 
   const handleInputChange = (e) => {
     setPhone(e.target.value);
@@ -12,7 +19,6 @@ export const UserInfo = ({ userInfo }) => {
 
   const handleSave = async () => {
     try {
-      // 서버로 연락처 저장 요청
       const response = await apiClient.post("/user/phone", { phone });
       console.log("연락처 저장 완료:", response.data);
       setIsEditing(false); // 저장 완료 후, 편집 모드를 비활성화
@@ -40,6 +46,8 @@ export const UserInfo = ({ userInfo }) => {
       ) : (
         <p>연락처: {userInfo.phone || phone}</p>
       )}
+
+<WalletBalance />
     </div>
   );
 };

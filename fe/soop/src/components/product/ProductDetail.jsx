@@ -27,7 +27,7 @@ export const ProductDetail = () => {
             <div className="info">
               <h2>{name}</h2>
               <p>{description}</p>
-              <p>KRW {price}</p>
+              <p> {price} Wei</p>
             </div>
 
             <BookingCalendar productId={id} />
