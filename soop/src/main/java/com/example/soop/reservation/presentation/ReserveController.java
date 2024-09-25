@@ -43,6 +43,6 @@ public class ReserveController {
 
     @GetMapping("/{reservationId}")
     public ResponseEntity<ReserveResponse> getReservation(@Auth Accessor accessor, @PathVariable(name = "reservationId") Long id) {
-        return ResponseEntity.ok(reserveService.getReservation(accessor.getMemberId(), id));
+        return ResponseEntity.ok(reserveService.getReservationDetail(accessor.getMemberId(), id));
     }
 }

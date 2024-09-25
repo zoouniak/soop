@@ -58,8 +58,8 @@ public class ReserveService {
                 .collect(Collectors.toList());
     }
 
-    public ReserveResponse getReservation(final Long memberId, final Long reservationId) {
-        Reservation reservation = getReservation(reservationId);
+    public ReserveResponse getReservationDetail(final Long memberId, final Long reservationId) {
+        Reservation reservation = getReservationDetail(reservationId);
         isValidReserver(memberId, reservation);
 
         return ReserveResponse.of(reservation);
@@ -93,7 +93,7 @@ public class ReserveService {
         validateReservationByUser(userId, cancelRequest.reservationId());
 
         User user = getUser(userId);
-        Reservation reservation = getReservation(cancelRequest.reservationId());
+        Reservation reservation = getReservationDetail(cancelRequest.reservationId());
 
         ReservationContract userContract = getUserContract(user.getPrivateKey());
         try {
@@ -157,7 +157,7 @@ public class ReserveService {
         }
     }
 
-    private Reservation getReservation(final Long reservationId) {
+    private Reservation getReservationDetail(final Long reservationId) {
         return reservationRepository.findById(reservationId).orElseThrow(() -> new ReservationException(ExceptionCode.NO_SUCH_RESERVATION));
     }
 }
