@@ -47,7 +47,7 @@ public class ReserveService {
         this.productRepository = productRepository;
     }
 
-    public List<ReservationResponse> getReservations(Long userId) {
+    public List<ReservationResponse> getReservations(final Long userId) {
         User user = getUser(userId);
         return reservationRepository.findAllByUser(user)
                 .stream()
@@ -58,7 +58,7 @@ public class ReserveService {
                 .collect(Collectors.toList());
     }
 
-    public ReserveResponse getReservation(Long memberId, Long reservationId) {
+    public ReserveResponse getReservation(final Long memberId, final Long reservationId) {
         Reservation reservation = getReservation(reservationId);
         isValidReserver(memberId, reservation);
 
@@ -67,7 +67,7 @@ public class ReserveService {
 
     // 사용자의 프라이빗 키로 reserve 함수를 호출
     @Transactional
-    public ReserveResponse reserve(Long userId, ReserveRequest reserveRequest) {
+    public ReserveResponse reserve(final Long userId, final ReserveRequest reserveRequest) {
         try {
             User user = getUser(userId);
             Product product = getProduct(reserveRequest);
@@ -112,7 +112,7 @@ public class ReserveService {
         }
     }
 
-    private ReservationContract getUserContract(String privateKey) {
+    private ReservationContract getUserContract(final String privateKey) {
         Credentials userCredentials = Credentials.create(privateKey);
         return ReservationContract.load(contractAddress, web3j, userCredentials, contractGasProvider);
     }
@@ -129,7 +129,7 @@ public class ReserveService {
 
 
     // 예약 완료
-    public void complete(Long userId, Long reserveId) {
+    public void complete(final Long userId, final Long reserveId) {
         try {
             User user = getUser(userId);
             ReservationContract userContract = getUserContract(user.getPrivateKey());
@@ -139,25 +139,25 @@ public class ReserveService {
         }
     }
 
-    private TimeSlot getTimeSlot(ReserveRequest reserveRequest) {
+    private TimeSlot getTimeSlot(final ReserveRequest reserveRequest) {
         return timeSlotRepository.findById(reserveRequest.timeSlotId()).orElseThrow(() -> new TimeSlotException(ExceptionCode.NO_SUCH_TIMESLOT));
     }
 
-    private Product getProduct(ReserveRequest reserveRequest) {
+    private Product getProduct(final ReserveRequest reserveRequest) {
         return productRepository.findById(reserveRequest.productId()).orElseThrow(() -> new ProductException(ExceptionCode.NO_SUCH_PRODUCT));
     }
 
-    private User getUser(Long userId) {
+    private User getUser(final Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserException(ExceptionCode.NO_SUCH_USER));
     }
 
-    private void isValidReserver(Long memberId, Reservation reservation) {
+    private void isValidReserver(final Long memberId, final Reservation reservation) {
         if (reservation.getUser().getId() != memberId) {
             throw new ReservationException(ExceptionCode.INVALID_RESERVER);
         }
     }
 
-    private Reservation getReservation(Long reservationId) {
+    private Reservation getReservation(final Long reservationId) {
         return reservationRepository.findById(reservationId).orElseThrow(() -> new ReservationException(ExceptionCode.NO_SUCH_RESERVATION));
     }
 }
