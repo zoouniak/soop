@@ -2,12 +2,16 @@ package com.example.soop.reservation.presentation;
 
 import com.example.soop.auth.domain.Accessor;
 import com.example.soop.auth.domain.Auth;
+import com.example.soop.reservation.dto.req.ReservationCancelRequest;
 import com.example.soop.reservation.dto.req.ReserveRequest;
+import com.example.soop.reservation.dto.res.ReservationResponse;
 import com.example.soop.reservation.dto.res.ReserveResponse;
 import com.example.soop.reservation.service.ReserveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,8 +25,8 @@ public class ReserveController {
     }
 
     @PostMapping("/cancel")
-    public ResponseEntity<?> cancel(@Auth Accessor accessor, @RequestParam(name = "id") Long id) {
-        reserveService.cancel(accessor.getMemberId(), id);
+    public ResponseEntity<?> cancel( @RequestBody ReservationCancelRequest request) {
+        reserveService.cancel(2L, request);
         return ResponseEntity.ok().build();
     }
 
@@ -30,5 +34,15 @@ public class ReserveController {
     public ResponseEntity<?> complete(@Auth Accessor accessor, @RequestParam(name = "id") Long id) {
         reserveService.complete(accessor.getMemberId(), id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<List<ReservationResponse>> getReservations(@Auth Accessor accessor) {
+        return ResponseEntity.ok(reserveService.getReservations(accessor.getMemberId()));
+    }
+
+    @GetMapping("/{reservationId}")
+    public ResponseEntity<ReserveResponse> getReservation(@Auth Accessor accessor, @PathVariable(name = "reservationId") Long id) {
+        return ResponseEntity.ok(reserveService.getReservation(accessor.getMemberId(), id));
     }
 }

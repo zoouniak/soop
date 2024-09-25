@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import static com.example.soop.reservation.status.ReservationStatus.CANCELLED;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -43,5 +45,9 @@ public class Reservation {
         this.product = product;
         this.status = ReservationStatus.RESERVED;
         this.createdAt = createdAt;
+    }
+
+    public void updateToCanceled(){
+        this.status = CANCELLED;
     }
 }

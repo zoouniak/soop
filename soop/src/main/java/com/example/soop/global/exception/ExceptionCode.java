@@ -31,7 +31,10 @@ public enum ExceptionCode {
     // user
     NO_SUCH_USER(501,BAD_REQUEST,"해당 사용자가 존재하지 않습니다."),
     // reservation
-    FAIL_RESERVE(601, INTERNAL_SERVER_ERROR,"예약 도중 에러가 발생하였습니다");
+    FAIL_RESERVE(601, INTERNAL_SERVER_ERROR,"예약 도중 에러가 발생하였습니다."),
+    FAIL_CANCEL(604, INTERNAL_SERVER_ERROR,"예약 취소 도중 에러가 발생하였습니다."),
+    NO_SUCH_RESERVATION(602,BAD_REQUEST,"존재하지 않는 예약입니다."),
+    INVALID_RESERVER(603,BAD_REQUEST,"예약자와 일치하지 않은 사용자입니다.");
 
     private final int errorCode;
     private final HttpStatus httpStatus;

@@ -6,7 +6,9 @@ import com.example.soop.product.domain.Product;
 import com.example.soop.product.domain.ProductRepository;
 import com.example.soop.reservation.domain.Reservation;
 import com.example.soop.reservation.domain.repository.ReservationRepository;
+import com.example.soop.reservation.dto.req.ReservationCancelRequest;
 import com.example.soop.reservation.dto.req.ReserveRequest;
+import com.example.soop.reservation.dto.res.ReservationResponse;
 import com.example.soop.reservation.dto.res.ReserveResponse;
 import com.example.soop.timeslot.domain.TimeSlot;
 import com.example.soop.timeslot.domain.repository.TimeSlotRepository;
@@ -22,6 +24,8 @@ import org.web3j.tx.gas.ContractGasProvider;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReserveService {
@@ -43,6 +47,24 @@ public class ReserveService {
         this.productRepository = productRepository;
     }
 
+    public List<ReservationResponse> getReservations(Long userId) {
+        User user = getUser(userId);
+        return reservationRepository.findAllByUser(user)
+                .stream()
+                .map(reservation -> new ReservationResponse(reservation.getId(),
+                        reservation.getProduct().getName(),
+                        reservation.getCreatedAt(),
+                        reservation.getStatus()))
+                .collect(Collectors.toList());
+    }
+
+    public ReserveResponse getReservation(Long memberId, Long reservationId) {
+        Reservation reservation = getReservation(reservationId);
+        isValidReserver(memberId, reservation);
+
+        return ReserveResponse.of(reservation);
+    }
+
     // 사용자의 프라이빗 키로 reserve 함수를 호출
     @Transactional
     public ReserveResponse reserve(Long userId, ReserveRequest reserveRequest) {
@@ -55,12 +77,38 @@ public class ReserveService {
             userContract.reserve(convertReservationDate(), new BigInteger(product.getPrice())).send();
             Long nextId = Long.valueOf(userContract.nextResId().send().toString());
 
-            reservationRepository.save(new Reservation(nextId - 1, timeSlot, user, product, LocalDateTime.now()));
+            Reservation save = reservationRepository.save(new Reservation(nextId - 1, timeSlot, user, product, LocalDateTime.now()));
             timeSlot.setUnAvailable();
-            return new ReserveResponse(1L, product.getName(), timeSlot.getDate(), timeSlot.getStartedAt(), user.getNickname(), user.getPhone());
+            return ReserveResponse.of(save);
         } catch (Exception e) {
             System.out.println(e);
             throw new ReservationException(ExceptionCode.FAIL_RESERVE);
+        }
+    }
+
+    // 예약 취소
+    @Transactional
+    public void cancel(final Long userId, final ReservationCancelRequest cancelRequest) {
+        // 검증
+        validateReservationByUser(userId, cancelRequest.reservationId());
+
+        User user = getUser(userId);
+        Reservation reservation = getReservation(cancelRequest.reservationId());
+
+        ReservationContract userContract = getUserContract(user.getPrivateKey());
+        try {
+            userContract.cancelReservation(BigInteger.valueOf(cancelRequest.reservationId())).send();
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new ReservationException(ExceptionCode.FAIL_CANCEL);
+        } finally {
+            reservation.updateToCanceled();
+        }
+    }
+
+    private void validateReservationByUser(final Long userId, final Long reservationId) {
+        if (!reservationRepository.existsByUserIdAndId(userId, reservationId)) {
+            throw new ReservationException(ExceptionCode.INVALID_RESERVER);
         }
     }
 
@@ -79,16 +127,6 @@ public class ReserveService {
         return BigInteger.valueOf(epochSeconds);
     }
 
-    // 예약 취소
-    public void cancel(Long userId, Long reserveId) {
-        try {
-            User user = getUser(userId);
-            ReservationContract userContract = getUserContract(user.getPrivateKey());
-            userContract.cancelReservation(BigInteger.valueOf(reserveId)).send();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     // 예약 완료
     public void complete(Long userId, Long reserveId) {
@@ -111,5 +149,15 @@ public class ReserveService {
 
     private User getUser(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserException(ExceptionCode.NO_SUCH_USER));
+    }
+
+    private void isValidReserver(Long memberId, Reservation reservation) {
+        if (reservation.getUser().getId() != memberId) {
+            throw new ReservationException(ExceptionCode.INVALID_RESERVER);
+        }
+    }
+
+    private Reservation getReservation(Long reservationId) {
+        return reservationRepository.findById(reservationId).orElseThrow(() -> new ReservationException(ExceptionCode.NO_SUCH_RESERVATION));
     }
 }
