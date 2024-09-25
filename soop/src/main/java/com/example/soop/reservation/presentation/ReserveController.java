@@ -25,8 +25,8 @@ public class ReserveController {
     }
 
     @PostMapping("/cancel")
-    public ResponseEntity<?> cancel( @RequestBody ReservationCancelRequest request) {
-        reserveService.cancel(2L, request);
+    public ResponseEntity<?> cancel(@Auth Accessor accessor,  @RequestBody ReservationCancelRequest request) {
+        reserveService.cancel(accessor.getMemberId(), request);
         return ResponseEntity.ok().build();
     }
 
