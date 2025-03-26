@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/77d86ea5-cbf4-4789-80b0-b4646dada45c)# 블록체인 기반 스냅 사진 예약 웹 사이트
+# 블록체인 기반 스냅 사진 예약 웹 사이트
 ### 아키텍처
 ![아키텍처 설계도](https://github.com/user-attachments/assets/5d1d6b5e-a1bf-4b79-97bf-c315ba0de053)
 ### 화면
